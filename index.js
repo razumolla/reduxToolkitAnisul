@@ -4,7 +4,7 @@ const DECREMENT = "DECREMENT";
 const ADD_USER = "ADD_USER";
 
 // state 
-const initialCounter = {
+const initialCounterState = {
     count: 0,
 }
 
@@ -40,3 +40,29 @@ const addUser = () => {
 // 2. dispatch action
 // 3. reducer (work based on type) increment / decrement
 // 4. store update
+// --------------- 3-----------
+
+// create reducer for Counter
+// reducer is pure function .. which work by action type er upor base kore
+
+const counterReducer = (state = initialCounterState, action) => {
+    switch (action.type) {
+        case INCREMENT:
+            return {
+                ...state,
+                count: state.count + 1
+            }
+        case DECREMENT:
+            return {
+                ...state,
+                count: state.count - 1
+            }
+        default:
+            state;
+    }
+}
+
+
+
+
+
