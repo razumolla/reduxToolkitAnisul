@@ -1,81 +1,73 @@
+// ====================== class-5 =====================
+// State -count:0
+// action - increment, decrement, reset
+// reducer for logic handle 
+// store
+
 const { createStore } = require("redux");
 
-
-// defining constants
+// Constant
 const INCREMENT = "INCREMENT";
 const DECREMENT = "DECREMENT";
-const ADD_USER = "ADD_USER";
+const RESET = "RESET";
 
-// ------------------------- 1. state -----------------------
-const initialCounterState = {
-    count: 0,
+// State -count:0
+const initialState = {
+    count: 0
 }
 
-const initialUsersStates = {
-    users: [
-        { name: "Razu Molla" }
-    ]
-}
-
-// -----------------------2. dispatch action---------------------------
-// action - Object [2 important things(type , payload)]
-// Increment Counter & Decrement Counter
-
-const incrementCounter = () => {
+// action - increment, decrement, reset
+const incrementCounterAction = () => {
     return {
         type: INCREMENT,
     }
 }
-
-const decrementCounter = () => {
+const decrementCounterAction = () => {
     return {
         type: DECREMENT,
     }
 }
-
-const addUser = () => {
+const resetCounterAction = () => {
     return {
-        type: ADD_USER, // dispace korbo , data dite hobe , payload er maddome
-        payload: { name: "Rakib" }, // passing data to reducer
+        type: RESET,
     }
 }
 
-
-
-// 3. reducer (work based on type) increment / decrement
-
-// --------------- ----------- 3: reducer-----------------------------------
-
-// create reducer for Counter
-// reducer is pure function .. which work by action type er upor base kore
-
-const counterReducer = (state = initialCounterState, action) => {
+// Creating reducer 
+const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREMENT:
             return {
                 ...state,
-                count: state.count + 1
+                count: state.count + 1,
             }
         case DECREMENT:
             return {
                 ...state,
-                count: state.count - 1
+                count: state.count - 1,
             }
+        case RESET:
+            return {
+                ...state,
+                count: 0,
+            }
+
         default:
             state;
     }
 }
 
-// --------4: store- getState(), dispatch(), subscribe() Method ------------
+// Store
+const store = createStore(counterReducer)
 
-const store= createStore(counterReducer);
-
-store.subscribe(()=>{
+store.subscribe(() => {
     console.log(store.getState());
 })
 
-// dispatch action
-store.dispatch(incrementCounter());
-store.dispatch(incrementCounter());
-store.dispatch(incrementCounter());
-store.dispatch(decrementCounter());
+store.dispatch(incrementCounterAction())
+store.dispatch(incrementCounterAction())
+store.dispatch(incrementCounterAction())
+store.dispatch(decrementCounterAction())
+store.dispatch(resetCounterAction())
+
+store.dispatch(incrementCounterAction())
