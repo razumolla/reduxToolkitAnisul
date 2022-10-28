@@ -1,7 +1,7 @@
 // ====================== class-5 =====================
 // State -count:0
 // action - increment, decrement, reset
-// reducer for logic handle 
+// reducer for logic handle
 // store
 
 const { createStore } = require("redux");
@@ -40,7 +40,7 @@ const incrementCounterByValue = (value) => {
     }
 }
 
-// Creating reducer 
+// Creating reducer
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREMENT:
